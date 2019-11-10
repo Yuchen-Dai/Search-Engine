@@ -1,6 +1,7 @@
 import json
 import bs4
 from pathlib import Path
+import porter_stemmer as ps
 
 def extract_text(file_name:str) -> str:
     text = open(file_name).readline()
@@ -31,6 +32,21 @@ def write(file_path, content, url):
         file.write(word+'\n')
     file.close()
 
+def stemmer(wordList: [str]) -> [str]:
+    '''
+    This stemmer takes a list of token and convert all tokens in the list to its stemmed form 
+    This stemmer uses Porter Stemmer. 
+    The source code can be found on https://tartarus.org/martin/PorterStemmer/
+    '''
+    myStemmer = ps.PorterStemmer()
+    stemmedWordList = []
+    for word in wordList:
+        if(word.isalpha()):# if word is an English word (contains only alphabets)
+            word = myStemmer.stem(word, 0, len(word)-1)
+        stemmedWordList.append(word)
+    return stemmedWordList
+
+
 if __name__ == "__main__":
     count = 1
     save_path ='/home/fanfanwu9898/Downloads/developer/tokenized/'
@@ -39,6 +55,7 @@ if __name__ == "__main__":
             if str(f).split('.')[-1] == 'json':
                 text, url = extract_text(f)
                 tokens = tokenized(text)
+                tokens = stemmer(tokens)
                 write(save_path+str(count)+'.txt', tokens, url)
                 count += 1
 
