@@ -1,1 +1,3 @@
 *.json
+__pycache__/porter_stemmer.cpython-38.pyc
+*.txt
