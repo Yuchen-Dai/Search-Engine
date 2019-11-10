@@ -19,7 +19,7 @@ def read_path(path):
 def read_text(file):
 	with Path.open() as f:
 		url = f.readline()
-
+		pass
 	return url
 
 def calc_tf_idf(result, total_file):
