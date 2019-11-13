@@ -9,7 +9,7 @@ def append_inverted(stem, token_list, result):
 	for token in token_list:
 		tf_raw[token] += 1
 	for token, c in tf_raw.items():
-		result[token].append([stem,c/count])
+		result[token].append([stem,1+math.log(c/count)])
 
 
 def read_path(path):
@@ -25,7 +25,7 @@ def read_text(file):
 def calc_tf_idf(result, total_file):
 	for token in result:
 		count_token = len(result[token])
-		idf = math.log(total_file/(count_token + 1))
+		idf = math.log(total_file/(count_token))
 		for document in result[token]:
 			document[1] =  document[1] * idf
 
