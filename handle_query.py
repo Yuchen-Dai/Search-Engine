@@ -36,10 +36,15 @@ class data_base:
 			result = result & a
 
 		print(time.time() - t)
-		return sorted(result, key = lambda x: score_dict[x], reverse = True)[:10]
+		key = sorted(result, key = lambda x: score_dict[x], reverse = True)[:10]
+		result = []
+		for i in key:
+			with open(f'op/{i}.txt') as f:
+				result.append(f.readline().rstrip())
+		return result
 
 if __name__ == '__main__':
 	print('Loading data.')
 	data = data_base()
 	print('Success.')
-	print(len(data.ask("software")))
+	
