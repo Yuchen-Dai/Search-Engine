@@ -1,5 +1,7 @@
 import pickle
 import time
+import porter_stemmer as ps
+from collections import defaultdict
 
 def load_data():
 	with open('inverted_index.pkl', 'rb') as f:
@@ -10,6 +12,7 @@ def load_data():
 class data_base:
 	def __init__(self):
 		self.inverted_index = load_data()
+		self.myStemmer = ps.PorterStemmer()
 
 	def ask(self, query) -> 'set of doc id':
 		t = time.time()
@@ -17,22 +20,26 @@ class data_base:
 				
 		querys = query.split()
 		answer = []
+		score_dict = defaultdict(float)
 		for q in querys:
 			q = q.lower()
+			q = self.myStemmer.stem(q, 0, len(q)-1)
 			if q in self.inverted_index:
 				doc = self.inverted_index[q]
 				answer.append({i[0] for i in sorted(doc, key = lambda x: x[1], reverse = True)})
+				for i in doc:
+					score_dict[i[0]] += i[1]
 		if not len(answer):
 			return
 		result = answer[0]
 		for a in answer[1:]:
 			result = result & a
 
-	 
-		return result
+		print(time.time() - t)
+		return sorted(result, key = lambda x: score_dict[x], reverse = True)[:10]
 
 if __name__ == '__main__':
 	print('Loading data.')
 	data = data_base()
 	print('Success.')
-	print(len(data.ask('ACM')))
+	print(len(data.ask("software")))
