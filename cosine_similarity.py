@@ -5,11 +5,11 @@ from collections import defaultdict
 from copy import deepcopy
 
 similarityThreshold = 0.99 # customizable similarity threshold
-debug = False
+debug = False # for debug print
 
 def cosineSimilarity(dictX: dict, dictY: dict):
 	"""
-	Source code can be seen on 
+	Source code can be found on 
 	www.biaodianfu.com/cosine-similarity.html
 	"""
 	listX = convertToVector(dictX)

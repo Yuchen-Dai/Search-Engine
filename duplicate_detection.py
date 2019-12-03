@@ -1,4 +1,5 @@
 import json, bs4, pathlib, hashlib
+# IMPORTANT: THIS FILE IS ABANDONED
 
 def compare_html(fileAString, fileBString) -> bool:
 
