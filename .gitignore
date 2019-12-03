@@ -3,3 +3,5 @@ __pycache__/porter_stemmer.cpython-38.pyc
 *.txt
 *.pkl
 *.pyc
+*.temp
+*.data
