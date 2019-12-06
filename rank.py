@@ -36,7 +36,7 @@ def cal_score(query:[str], page:str, dicts):
 def bag(query:[str], pages:[str]):
     dicts = []
     for w in query:
-        to_read = open('/home/fanfanwu9898/developer/post/' + w + '.pickle', 'rb')
+        to_read = open('post/' + w + '.pickle', 'rb')
         dicts.append(pickle.load(to_read))
         to_read.close()
 

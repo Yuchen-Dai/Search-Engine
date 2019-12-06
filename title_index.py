@@ -40,13 +40,13 @@ def stemmer(wordList: [str]) -> [str]:
 
 if __name__ == "__main__":
     check_dict = {}
-    for p in Path('/home/fanfanwu9898/developer/op').iterdir():
+    for p in Path('op').iterdir():
         f = open(p, 'r')
 
 
-    save_path ='/home/fanfanwu9898/developer/title/'
+    save_path ='title/'
     title_dict = {}
-    for p in Path('/home/fanfanwu9898/developer/DEV').iterdir():
+    for p in Path('DEV').iterdir():
         for f in p.iterdir():
             if str(f).split('.')[-1] == 'json':
                 text, url= extract_title(f)

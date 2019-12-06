@@ -6,7 +6,7 @@ from rank import *
 
 
 def load_data():
-	with open('/home/fanfanwu9898/developer/inverted_index/token_dict.pkl', 'rb') as f:
+	with open('inverted_index/token_dict.pkl', 'rb') as f:
 		inverted_index = pickle.load(f)
 	return inverted_index
 
@@ -19,7 +19,7 @@ class data_base:
 	def get_list(self, q):
 		number = self.inverted_index[q]
 		file_number = int(number/1000)
-		address = f'/home/fanfanwu9898/developer/inverted_index/inverted_index{file_number}.data'
+		address = f'inverted_index/inverted_index{file_number}.data'
 		with open(address, 'r') as f:
 			for i in range(number - 1000*file_number + 1):
 				line = f.readline()
@@ -77,7 +77,7 @@ class data_base:
 		key = sorted(final_score, key = lambda x: final_score[x], reverse = True)[:10]
 		result = []
 		for i in key:
-			with open(f'/home/fanfanwu9898/developer/op/{i}.txt') as f:
+			with open(f'op/{i}.txt') as f:
 				result.append(f.readline().rstrip())
 		print(time.time() - t)
 		return result

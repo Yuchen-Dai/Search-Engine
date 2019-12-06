@@ -31,7 +31,7 @@ def calc_tf_idf(result, total_file):
 			document[1] =  document[1] * idf
 
 def dump_file(result,file_number):
-	with open(f'/home/fanfanwu9898/developer/inverted_index/{file_number}.temp', 'w') as f:
+	with open(f'inverted_index/{file_number}.temp', 'w') as f:
 		for token in sorted(result):
 			f.write(f'{token} ')
 			for token in result[token]:
@@ -45,7 +45,7 @@ def merge(temp_count):
 	token_dict = {}
 	#load each file
 	for i in range(temp_count):
-		temp_file.append(open(f'/home/fanfanwu9898/developer/inverted_index/{i + 1}.temp', 'r'))
+		temp_file.append(open(f'inverted_index/{i + 1}.temp', 'r'))
 	for f in temp_file:
 		temp_line.append(f.readline())
 
@@ -53,7 +53,7 @@ def merge(temp_count):
 	count = 0
 	while len(temp_line):
 		if count % 1000 == 0:
-			inverted_index = open(f'/home/fanfanwu9898/developer/inverted_index/inverted_index{int(count/1000)}.data','w')
+			inverted_index = open(f'inverted_index/inverted_index{int(count/1000)}.data','w')
 		token = min([i.split()[0] for i in temp_line])
 		token_dict[token] = count
 		count += 1
@@ -73,14 +73,14 @@ def merge(temp_count):
 					temp_line[f] = line
 			f += 1
 		inverted_index.write('\n')
-	with open('/home/fanfanwu9898/developer/inverted_index/token_dict.pkl', 'wb') as f:
+	with open('inverted_index/token_dict.pkl', 'wb') as f:
 		pickle.dump(token_dict, f, pickle.HIGHEST_PROTOCOL)
 
 
 def main():
 	result = defaultdict(list)
 	#path of the source file
-	path = '/home/fanfanwu9898/developer/op'
+	path = 'op'
 	files = read_path(path)
 	
 	total_file = 0
