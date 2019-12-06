@@ -49,8 +49,8 @@ def stemmer(wordList: [str]) -> [str]:
 
 if __name__ == "__main__":
     count = 1
-    save_path ='op/'
-    for p in Path('DEV').iterdir():
+    save_path ='/home/fanfanwu9898/developer/op/'
+    for p in Path('/home/fanfanwu9898/developer/DEV').iterdir():
         for f in p.iterdir():
             if str(f).split('.')[-1] == 'json':
                 text, url = extract_text(f)
