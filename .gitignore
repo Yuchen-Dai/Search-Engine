@@ -5,3 +5,4 @@ __pycache__/porter_stemmer.cpython-38.pyc
 *.pyc
 *.temp
 *.data
+test.py

@@ -59,14 +59,14 @@ class data_base:
 
 		result = sorted(result, key = lambda x: score_dict[x], reverse = True)
 
-		distances, counts, locations = bag(querys, result)
+##		distances, counts, locations = bag(querys, result)
 
 
-		for score, f in enumerate(sorted(distances, key = lambda x: distances[x], reverse = True)):
-			final_score[f] += score**2
+##		for score, f in enumerate(sorted(distances, key = lambda x: distances[x], reverse = True)):
+##			final_score[f] += score**2
 
-		for score, f in enumerate(sorted(counts, key = lambda x: counts[x], reverse = True)):
-			final_score[f] += score**2
+##		for score, f in enumerate(sorted(counts, key = lambda x: counts[x], reverse = True)):
+##			final_score[f] += score**2
 
 		# for score, f in enumerate(sorted(locations, key = lambda x: locations[x], reverse = True)):
 		# 	final_score[f] += score**2
